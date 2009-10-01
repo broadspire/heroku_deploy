@@ -1,0 +1,31 @@
+heroku-deploy
+=============
+
+Deploy to multiple heroku apps (for different environments), making sure to use
+a predefined stable branch. This will inspect your current git remotes to figure
+the name of the tasks. So for example, if you have a remote named 'production'
+poiting to 'git@heroku.com:my-awesome-app', then `rake deploy:production` will
+deploy to that application.
+
+Usage:
+
+    rake deploy:setup # this creates and pushes a 'stable' branch to origin
+
+    rake deploy:<name-of-remote> # this pushes to whatever remote you have
+                                 # pointing to heroku that you specify.
+
+Specifying a git ref to push
+----------------------------
+
+If you rather push a tag or another branch, then specify a environment variable
+GIT_REF that points to the ref you want to push. For example:
+
+    rake GIT_REF=v1.0 deploy:production
+
+Will push the tag 'v1.0' to the remote named 'production'
+
+Legal
+-----
+
+Copyright (c) 2009 Nicolás Sanguinetti, for BroadSpire
+Released under the MIT license.
